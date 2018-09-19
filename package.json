@@ -5,7 +5,7 @@
   "description": "PandoraMarket",
   "main": "./.webpack/main/index.js",
   "scripts": {
-    "start": "npx electron-forge start",
+    "start": "DEBUG=electron-forge:* npx electron-forge start",
     "package": "npx electron-forge package",
     "make": "npx electron-forge make",
     "publish": "npx electron-forge publish",
