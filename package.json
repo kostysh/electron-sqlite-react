@@ -1,0 +1,65 @@
+{
+  "name": "pandora-market",
+  "productName": "pandoramarket",
+  "version": "1.0.0",
+  "description": "PandoraMarket",
+  "main": "./.webpack/main/index.js",
+  "scripts": {
+    "start": "npx electron-forge start",
+    "package": "npx electron-forge package",
+    "make": "npx electron-forge make",
+    "publish": "npx electron-forge publish",
+    "lint": "echo \"No linting configured\""
+  },
+  "keywords": [
+    "pandora",
+    "pandoraboxchain",
+    "pyrrha",
+    "pyrrha-consensus",
+    "blockchain",
+    "ethereum",
+    "web3",
+    "desktop",
+    "electron",
+    "market",
+    "dataset",
+    "kernel",
+    "ai"
+  ],
+  "author": "Kostiantyn Smyrnov <kostysh@gmail.com>",
+  "license": "MIT",
+  "config": {
+    "forge": "./forge.config.js"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.0.0",
+    "electron-squirrel-startup": "^1.0.0",
+    "react": "^16.5.1",
+    "react-dom": "^16.5.1",
+    "react-hot-loader": "^4.3.8",
+    "sequelize": "^4.38.1",
+    "sqlite3": "^4.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "@electron-forge/cli": "^6.0.0-beta.28",
+    "@electron-forge/maker-deb": "^6.0.0-beta.28",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.28",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.28",
+    "@electron-forge/maker-zip": "^6.0.0-beta.28",
+    "@electron-forge/plugin-webpack": "^6.0.0-beta.22",
+    "babel-eslint": "^9.0.0",
+    "babel-loader": "^8.0.2",
+    "copy-webpack-plugin": "^4.5.2",
+    "css-loader": "^1.0.0",
+    "electron": "2.0.9",
+    "eslint": "^5.6.0",
+    "html-webpack-plugin": "^3.2.0",
+    "style-loader": "^0.23.0",
+    "svg-loader": "0.0.2",
+    "url-loader": "^1.1.1",
+    "webpack-merge": "^4.1.4"
+  }
+}
