@@ -9,3 +9,7 @@ npm i
 ```sh
 npm start
 ```
+or with debug info:
+```sh
+npm run start:debug
+```
