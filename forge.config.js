@@ -34,7 +34,9 @@ const sharedModule = {
             test: /\.node$/,
             use: ['node-loader']
         }
-    ]
+    ],
+    exprContextRegExp: /$^/,
+    exprContextCritical: false
 };
 
 module.exports = {
@@ -45,12 +47,10 @@ module.exports = {
         [
             '@electron-forge/plugin-webpack', {
                 mainConfig: {
-                    entry: {
-                        index: [
-                            '@babel/polyfill',
-                            path.resolve(__dirname, 'src/index.js')
-                        ]
-                    },
+                    entry: [
+                        '@babel/polyfill',
+                        path.resolve(__dirname, 'src/index.js')
+                    ],
                     module: sharedModule,
                     plugins: [
                         new CopyWebpackPlugin([
@@ -61,7 +61,7 @@ module.exports = {
                         ])
                     ],
                     output: {
-                        filename: '[name].js'
+                        filename: 'index.js'
                     },
                     externals: ['sqlite3']
                 },
@@ -94,26 +94,26 @@ module.exports = {
     ],
     packagerConfig: {},
     makers: [
-        {
-            name: '@electron-forge/maker-squirrel',
-            config: {
-                name: 'pandora-market'
-            }
-        },
-        {
-            name: '@electron-forge/maker-zip',
-            platforms: [
-                'darwin'
-            ]
-        },
+        // {
+        //     name: '@electron-forge/maker-squirrel',
+        //     config: {
+        //         name: 'pandora-market'
+        //     }
+        // },
+        // {
+        //     name: '@electron-forge/maker-zip',
+        //     platforms: [
+        //         'darwin'
+        //     ]
+        // },
         {
             name: '@electron-forge/maker-deb',
             config: {}
         },
-        {
-            name: '@electron-forge/maker-rpm',
-            config: {}
-        }
+        // {
+        //     name: '@electron-forge/maker-rpm',
+        //     config: {}
+        // }
     ],
     publishers: []
 };
