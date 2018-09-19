@@ -5,7 +5,7 @@ const db = new Sequelize('database', null, null, {
     storage: 'market.db'
 });
 
-const keyvalModel = Sequelize.define('keyval', {
+const keyvalModel = db.define('keyval', {
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,

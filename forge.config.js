@@ -7,26 +7,32 @@ const sharedModule = {
         {
             test: /\.js$/,
             exclude: /node_modules/,
-            use: {
-                loader: 'babel-loader',
-                options: {
-                    presets: [
-                        [
-                            '@babel/preset-env',
-                            {
-                                targets: {
-                                    electron: '2.0.9'
+            use: [
+                {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: [
+                            [
+                                '@babel/preset-env',
+                                {
+                                    targets: {
+                                        electron: '2.0.9'
+                                    }
                                 }
-                            }
-                        ], 
-                        '@babel/preset-react'
-                    ]
+                            ], 
+                            '@babel/preset-react'
+                        ]
+                    }
                 }
-            }
+            ]
         },
         {
             test: /\.(png|jpg|gif)$/,
             use: ['url-loader']
+        },
+        {
+            test: /\.node$/,
+            use: ['node-loader']
         }
     ]
 };
@@ -56,7 +62,8 @@ module.exports = {
                     ],
                     output: {
                         filename: '[name].js'
-                    }
+                    },
+                    externals: ['sqlite3']
                 },
                 renderer: {
                     config: {
@@ -67,14 +74,11 @@ module.exports = {
                                     use: ['style-loader', 'css-loader']
                                 },
                                 {
-                                    test: /\.(svg)$/,
+                                    test: /\.svg$/,
                                     use: ['svg-loader']
                                 }
                             ]
-                        }, sharedModule),
-                        resolve: {
-                            extensions: ['.js', '.json'],
-                        }
+                        }, sharedModule)
                     },
                     prefixedEntries: process.env.NODE_ENV === 'production' ? [] : ['react-hot-loader/patch'],
                     entryPoints: [
