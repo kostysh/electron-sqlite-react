@@ -43,7 +43,6 @@ module.exports = {
         [
             '@electron-forge/plugin-webpack', {
                 mainConfig: {
-                    mode: 'development',//because in production webpack generate an empty output
                     entry: [
                         '@babel/polyfill',
                         path.resolve(__dirname, 'src/index.js')
@@ -57,7 +56,7 @@ module.exports = {
                             }
                         ])
                     ],
-                    externals: ['sqlite3']
+                    externals: ['sqlite3', 'sequelize']
                 },
                 renderer: {
                     config: {
