@@ -5,14 +5,14 @@
   "description": "Electron.js sqlite example",
   "main": "./.webpack/main/index.js",
   "scripts": {
-    "clean": "npx rimraf ./.webpack ./out",
+    "clean": "npx rimraf ./.webpack ./out ./market.db",
     "prestart": "npm run clean",
-    "start": "npx electron-forge start",
+    "start": "DEBUG=webpack npx electron-forge start",
     "start:debug": "DEBUG=electron-forge:* npm start",
     "prepackage": "npm run clean",
-    "package": "npx electron-forge package",
+    "package": "NODE_ENV=production npx electron-forge package",
     "premake": "npm run clean",
-    "make": "npx electron-forge make",
+    "make": "NODE_ENV=production npx electron-forge make",
     "publish": "npx electron-forge publish",
     "lint": "echo \"No linting configured\""
   },
@@ -56,7 +56,6 @@
     "style-loader": "^0.23.0",
     "svg-loader": "0.0.2",
     "url-loader": "^1.1.1",
-    "node-loader": "^0.6.0",
     "webpack-merge": "^4.1.4",
     "rimraf": "2.6.2"
   }

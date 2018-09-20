@@ -2,6 +2,8 @@ const path = require('path');
 const merge = require('webpack-merge');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
+const isProd = process.env.NODE_ENV === 'production';
+
 const sharedModule = {
     rules: [
         {
@@ -29,14 +31,8 @@ const sharedModule = {
         {
             test: /\.(png|jpg|gif)$/,
             use: ['url-loader']
-        },
-        {
-            test: /\.node$/,
-            use: ['node-loader']
         }
-    ],
-    exprContextRegExp: /$^/,
-    exprContextCritical: false
+    ]
 };
 
 module.exports = {
@@ -47,6 +43,7 @@ module.exports = {
         [
             '@electron-forge/plugin-webpack', {
                 mainConfig: {
+                    mode: 'development',//because in production webpack generate an empty output
                     entry: [
                         '@babel/polyfill',
                         path.resolve(__dirname, 'src/index.js')
@@ -60,9 +57,6 @@ module.exports = {
                             }
                         ])
                     ],
-                    output: {
-                        filename: 'index.js'
-                    },
                     externals: ['sqlite3']
                 },
                 renderer: {
@@ -80,12 +74,12 @@ module.exports = {
                             ]
                         }, sharedModule)
                     },
-                    prefixedEntries: process.env.NODE_ENV === 'production' ? [] : ['react-hot-loader/patch'],
                     entryPoints: [
                         {
                             html: path.resolve(__dirname, 'src/renderer/index.html'),
                             js: path.resolve(__dirname, 'src/renderer/index.js'),
-                            name: 'main_window'
+                            name: 'main_window',
+                            prefixedEntries: isProd ? [] : ['react-hot-loader/patch'],
                         }
                     ]
                 }
